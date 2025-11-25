@@ -1,0 +1,51 @@
+[package]
+name = "wordpress-audit"
+version = "1.0.0"
+authors = ["Robert F. Ecker <robert@robdotec.com>"]
+edition = "2024"
+rust-version = "1.91.1"
+description = "WordPress audit tool - detects outdated core, plugins, and themes"
+documentation = "https://docs.rs/wordpress-audit"
+repository = "https://github.com/robdotec/wordpress-audit"
+license = "MIT"
+keywords = ["wordpress", "security", "audit", "scanner", "cli"]
+categories = ["command-line-utilities", "web-programming"]
+
+[features]
+default = []
+
+[dependencies]
+# CLI argument parsing
+clap = { version = "4.5", features = ["derive", "color"] }
+
+# HTTP client
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "gzip", "json", "cookies"] }
+
+# Async runtime
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+
+# HTML parsing
+scraper = "0.22"
+
+# URL handling
+url = "2.5"
+
+# Serialization/deserialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+thiserror = "2"
+
+# Table output
+comfy-table = "7"
+
+# Regex for version extraction
+regex = "1"
+
+[dev-dependencies]
+wiremock = "0.6"
+tokio-test = "0.4"
+
+[package.metadata.docs.rs]
+all-features = true
